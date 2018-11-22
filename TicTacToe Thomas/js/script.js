@@ -12,6 +12,9 @@ let x;
 function imgClick(index){
   	x=document.getElementsByName('image')[index];
   	checkingTurn(index);
+
+  	draw();
+  		
 }
 
 let currentPlayer;
@@ -189,5 +192,36 @@ function restart(){      					//pre vynulovanie bodov a prazdnych policok
 
 	document.getElementsByName('nameP')[0].value="";
 	document.getElementsByName('nameP')[1].value="";
+
+	scorePlayerOne=0;
+	document.getElementsByName('scoreP1')[0].innerHTML=scorePlayerOne;
+	scorePlayerTwo=0;
+	document.getElementsByName('scoreP2')[0].innerHTML=scorePlayerTwo;
 }
 
+function draw(){
+
+	let counterOfAll=0;
+
+  		for(i=0;i<2;i++){										//PRE PRIPAD AK BY NIKTO NEVYHRAL
+  			for(let j=0;j<9;j++){
+  				if(board[i][j]==1){
+  					counterOfAll++;
+  				}
+  			}
+  		}												
+
+  		if(counterOfAll==9){
+  			board=[
+			[0,0,0,0,0,0,0,0,0],	
+			[0,0,0,0,0,0,0,0,0]
+		    ];
+
+			for(i=0;i<board[0].length;i++){
+				let x=document.getElementsByName('image')[i];
+				x.setAttribute("src","img/empty.png");
+			}
+  			alert("REMIZA");							//A TERAZ MAS VYMAZAT POLE
+  		}
+
+}
